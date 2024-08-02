@@ -1,7 +1,7 @@
 from flask import *
 from pyrebase import *
 from algorithm import Algorithm
-import sqlite3
+import database as db
 import requests
 import time 
 from datetime import timedelta
@@ -101,22 +101,11 @@ def home():
     if 'user' in session:
 
         #signed user
-        
-        user_id_token = session['user']["idToken"]
+
         try:
             auth.refresh(session['user']['refreshToken'])
-            user = auth.get_account_info(user_id_token)['users'][0]
+            user = auth.get_account_info(session["user"]["idToken"])['users'][0]
             first_name = user.get('displayName', '').split()[0] if 'displayName' in user else "!"
-
-            # conn = sqlite3.connect('gyaanConnect.db')
-            # cursor = conn.cursor()
-            # cursor.execute("SELECT TOPIC FROM USER")
-            # topic = cursor.fetchall()
-            # print(topic)
-            
-
-
-
             button1id = "hello"
             video1 = "https://www.youtube.com/watch?v=vLqTf2b6GZw&pp=ygUGcHl0aG9u"
             like1="1000"
@@ -151,7 +140,6 @@ def home():
 
 
 @app.route('/signup', methods = ['GET','POST'])
-
 def signup():
 
     if request.method == 'POST':
@@ -161,44 +149,24 @@ def signup():
         newpassword = request.form['newpassword']
         is_teacher = 'flag' in request.form
 
-        try:
-            
+        try: 
             user = auth.create_user_with_email_and_password(newemail, newpassword)
-
-            auth.update_profile(user["idToken"], display_name = newname)
-
             
             if is_teacher==True :
-
-  
-
-                    
-
+                db.create_login(newemail, newname, newpassword, 1)
                 return(render_template('teacher_login.html'))
             else:
                 return(render_template('personal_details.html'))
            
-            
         except Exception as e:
-            
             message = json.loads(e.args[1])['error']['message']
-            
+
             if message == "EMAIL_EXISTS":
-
-                
                 return render_template('login.html', signup_error = "Email already exists. Login with you registered email or register with a new one.", signup_display_error = True)
-            
-            
             else:
-
                 return render_template('login.html', signup_error = "Something is not right. Please try again later or contact the administrator", signup_display_error = True)
 
-            
-
-    
     else:
-
-
         signup_error_message = "Something is not right. Please try again later or contact the administrator"
         return render_template('login.html', signup_error = signup_error_message, signup_display_error = True)
 
@@ -213,11 +181,15 @@ def login():
         
         email = request.form['email']
         password = request.form['password']
+        print(email)
+        print(password)
 
         
         try:
             
             user = auth.sign_in_with_email_and_password(email, password)
+            # user = auth.get_account_info(user['idToken'])
+            print("the login : ",user)
             session['user'] = user
             return redirect('/')
         
@@ -429,7 +401,6 @@ def chatbot():
 
         return render_template('chatbot.html', first_name=first_name)
 
-
     else:
         return render_template('chatbot.html')
 
@@ -455,27 +426,20 @@ def working():
             first_name = user['displayName'].split()[0]
 
         return render_template('working.html', first_name=first_name)
+        return redirect('working.html')
 
-
-
-        return redirect('working.html') 
 
 @app.route("/teaher_login", methods = ['GET'])
 def teacher_login():
-
-
     print(request.get_data())
     return render_template('teacher_login.html')
+
 
 #time function
 @app.route('/update_total_time', methods=['POST'])
 def update_total_time():
     print( calculate_total_time())
     return jsonify(success=True)
-
-
-
-
 
 
 @app.route('/submit_form', methods=['POST'])
@@ -495,11 +459,6 @@ def submit_form():
         topics_interested = request.form['topics']
         level = request.form['selectedLevel']
 
-        conn = sqlite3.connect('gyaanConnect.db')
-        cursor = conn.cursor()
-        cursor.execute("INSERT INTO user VALUES(?,?,?,?,?,?,?,?,?,?,?)",(email, username, first_name+last_name, university_name, gender, location,phone_number, birthday, course_enrolled, topics_interested, level))
-        cursor.execute("INSERT INTO gyx VALUES(?,?,?)",(calculate_total_time(),email,0))
-        conn.close()
 
         # Do something with the data (e.g., save to a database)
         # For now, just print the data

@@ -4,11 +4,35 @@
 
 The Online Personalized Education Platform is a revolutionary solution developed for the Smart India Hackathon. The platform aims to provide a personalized and adaptive learning experience to users, leveraging technologies such as HTML, CSS, JavaScript, and Python. The project utilizes Firebase for seamless data management and real-time updates.
 
-## installing Modules
+## Setup
 
-RUN THE FOLLOWING COMMAND IN THE TERMINAL
+To setup the project in your local system follow the steps below :
 
-**pip install -r mods.txt**
+Setup the Virtual Environment
+
+Run the following commands
+
+```bash
+  pip install virtualenv
+
+  python -m venv venv
+
+  venv/Scripts/activate
+```
+
+## Install the dependencies
+
+```bash
+  pip install -r requirements.txt
+```
+
+## Run the application
+
+```bash
+    python app.py
+```
+
+
 
 ## Features
 

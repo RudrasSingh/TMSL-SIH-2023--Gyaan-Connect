@@ -4,212 +4,223 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}{% endblock %}</title>
-    {% block styles %}  {% endblock %}
-    <link rel="stylesheet" type = "text/css" href="{{url_for('static', filename = 'css/material.css')}}">
-    <link rel="stylesheet" type = "text/css" href="{{url_for('static', filename = 'css/index.css')}}">
-    <link rel="stylesheet" type = "text/css" href="{{url_for('static', filename = 'css/global.css')}}">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Gyaan Connect</title>
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename = 'css/index.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static', filename = 'css/global.css')}}">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
 
+
+
 </head>
+<script src="/static/js/time.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
+<body onload="onloade()">
+    <div id="loading">
+    </div>
+    <header>
 
+        <nav>
+            <div class="navbar navbar-expand-lg fixed-top bg-white my-0">
+                <a class="navbar-brand py-0 my-2" href="#">
+                    <div class="log"><img src="/static/svg/logo1.png" alt=""></div>
+                </a>
+                <div class="container-fluid">
 
+                    <div class="logo"> <a href="#"
+                            class="brand text-decoration-none d-block d-lg-none fw-bold fs-1 ml-5"><img
+                                src="/static/svg/logo1.png" alt=""></a></div>
+                    <button class="navbar-toggler mr-5" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+                        <ul id="nav-length" class="navbar-nav justify-content-end border-2 text-center">
+                            <li class="nav-item mr-5">
+                                <a href="{{url_for('home')}}"
+                                    class="nav-link border-hover my-2 py-0 text-black">Home</a>
+                            </li>
+                            <li class="nav-item mr-5">
+                                <a href="#" class="nav-link border-hover py-0 my-2 text-black">About Us</a>
+                            </li>
+                            <li class="nav-item mr-5">
+                                <a href="{{url_for('homee')}}" class="nav-link border-hover my-2 py-0 text-black">Live
+                                    Chat</a>
+                            </li>
+                            <!-- Dark/Light Mode Toggle Button -->
+                            <!--  <li class="nav-item mr-5">
+                        <a href="#dark" id="dark-mode-toggle" class="nav-link border-hover my-2 py-0 text-black">Dark</a>
+                      </li> -->
 
+                            <!-- <li class="nav-item mr-5">
+                        <a href="{{url_for('chatbot')}}" class="nav-link border-hover my-2 py-0 text-black">ChatBot</a>
+                    </li>-->
+                            <li class="nav-item mr-5">
+                                <a href="#footer" class="nav-link border-hover  my-2 py-0 text-black">Contact Us</a>
+                            </li>
+                            <li class="nav-item mr-5">
+                                <a href="{{url_for('dashboard')}}"
+                                    class="nav-link border-hover  my-2 py-0 text-black">Dashboard</a>
+                            </li>
 
+                            <!-- Display Dashboard link and user's first initial -->
+                            <!--  <li class="nav-item mr-3">
+                        <a href="{{ url_for('dashboard') }}" id="dashboard" class="nav-link py-2 px-4 my-0 text-black">
+                          <div class="d-flex align-items-center justify-content-center position-relative">
+                            <div class="initial-circle"></div>
+                            <span class="ml-2">Dashboard</span>
+                          </div>
+                        </a>
+                      </li>
+                      <li class="nav-item mr-5">
+                        <a href="{{url_for('logout')}}" id="sign-in" class="nav-link py-1.8  px-4 my-0 text-black">
+                            Log out
+                        </a>
+                      </li> -->
 
-
-<header>
-
-    <nav>
-        <div class="navbar navbar-expand-lg fixed-top bg-white my-0">
-            <a class="navbar-brand py-0 my-2" href="#">
-                <div class="log"><img src="/static/svg/logo1.png" alt=""></div>
-            </a>
-            <div class="container-fluid">
-
-                <div class="logo"> <a href="#"
-                        class="brand text-decoration-none d-block d-lg-none fw-bold fs-1 ml-5"><img
-                            src="/static/svg/logo1.png" alt=""></a></div>
-                <button class="navbar-toggler mr-5" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
-                    <ul id="nav-length" class="navbar-nav justify-content-end border-2 text-center">
-                        <li class="nav-item mr-5">
-                            <a href="{{url_for('home')}}" class="nav-link border-hover my-2 py-0 text-black">Home</a>
-                        </li>
-                        <li class="nav-item mr-5">
-                            <a href="#" class="nav-link border-hover py-0 my-2 text-black">About Us</a>
-                        </li>
-                        <li class="nav-item mr-5">
-                            <a href="{{url_for('homee')}}" class="nav-link border-hover my-2 py-0 text-black">Live
-                                Chat</a>
-                        </li>
-                     <!--  <li class="nav-item mr-5">
-                            <a href="{{url_for('chatbot')}}"
-                                class="nav-link border-hover my-2 py-0 text-black">ChatBot</a> -->
-                        </li>
-                        <li class="nav-item mr-5">
-                            <a href="#footer" class="nav-link border-hover  my-2 py-0 text-black">Contact Us</a>
-                        </li>
-
-                        <!-- Display Login link -->
-                        <li class="nav-item mr-5">
-                            <a href="{{url_for('login')}}" id="sign-in" class="nav-link py-2  px-5 my-0 text-black">
-                                Log in
-                            </a>
-                        </li>
-
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </nav>
-</header>
-
-<main>
-
-{% block body %}
-
-{% endblock %}
-
-</main>
-
-
-
-
-<!--footer section-->
-
-
-<footer class="footer-section" id="footer">
-    <div class="container">
-        <div class="footer-cta pt-5 pb-5">
-            <div class="row">
-                <div class="col-xl-4 col-md-4 mb-30">
-                    <div class="single-cta">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <div class="cta-text">
-                            <h4>Find us</h4>
-                            <span>TMSL SECTOR V</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-md-4 mb-30">
-                    <div class="single-cta">
-                        <i class="fas fa-phone"></i>
-                        <div class="cta-text">
-                            <h4>Call us</h4>
-                            <span>123456789</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-md-4 mb-30">
-                    <div class="single-cta">
-                        <i class="far fa-envelope-open"></i>
-                        <div class="cta-text">
-                            <h4>Mail us</h4>
-                            <span>gyaan.connect.edu@gmail.com</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="footer-content pt-5 pb-5">
-            <div class="row">
-                <div class="col-xl-4 col-lg-4 mb-50">
-                    <div class="footer-widget">
-                        <div class="footer-logo">
-                            <a href="{{url_for('home')}}"><img src="/static/svg/logo.png" class="img-fluid"
-                                    alt="logo"></a>
-                        </div>
-                        <div class="footer-text">
-
-                        </div>
-                        <div class="footer-social-icon">
-                            <span>Follow us</span>
-                            <a href="#"><i class="fab fa-facebook-f facebook-bg"></i></a>
-                            <a href="#"><i class="fab fa-twitter twitter-bg"></i></a>
-                            <a href="#"><i class="fab fa-google-plus-g google-bg"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-md-6 mb-30">
-                    <div class="footer-widget">
-                        <div class="footer-widget-heading">
-                            <h3>Useful Links</h3>
-                        </div>
-                        <ul>
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">about</a></li>
-                            <li><a href="#">Contact</a></li>
-                            <li><a href="#">About us</a></li>
-                            <li><a href="#">Our Services</a></li>
-                            <li><a href="#">Contact us</a></li>
+                            <!-- Display Login link -->
+                            <li class="nav-item mr-5">
+                                <a href="{{url_for('logout')}}" id="sign-in"
+                                    class="nav-link py-2  px-5 my-0 text-black">
+                                    Log out
+                                </a>
+                            </li>
 
                         </ul>
                     </div>
                 </div>
-                <div class="col-xl-4 col-lg-4 col-md-6 mb-50">
-                    <div class="footer-widget">
-                        <div class="footer-widget-heading">
-                            <h3>Subscribe</h3>
-                        </div>
-                        <div class="footer-text mb-25">
-                            <p>Do not miss to subscribe to our new feeds, kindly fill the form below.</p>
-                        </div>
-                        <div class="subscribe-form">
-                            <form action="#">
-                                <input type="text" placeholder="Email Address">
-                                <button><i class="fab fa-telegram-plane"></i></button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
             </div>
-        </div>
-    </div>
-    <div class="copyright-area">
+        </nav>
+    </header>
+    <footer class="footer-section" id="footer">
         <div class="container">
-            <div class="row">
-                <div class="col-xl-6 col-lg-6 text-center text-lg-left">
-                    <div class="copyright-text">
-                        <p>Copyright &copy; 2023, All Right Reserved <a href="#">GyaanConnect</a></p>
+            <div class="footer-cta pt-5 pb-5">
+                <div class="row">
+                    <div class="col-xl-4 col-md-4 mb-30">
+                        <div class="single-cta">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div class="cta-text">
+                                <h4>Find us</h4>
+                                <span>TMSL SECTOR V</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-4 mb-30">
+                        <div class="single-cta">
+                            <i class="fas fa-phone"></i>
+                            <div class="cta-text">
+                                <h4>Call us</h4>
+                                <span>1234567890</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-4 mb-30">
+                        <div class="single-cta">
+                            <i class="far fa-envelope-open"></i>
+                            <div class="cta-text">
+                                <h4>Mail us</h4>
+                                <span>gyaan.connect.edu@gmail.com</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-xl-6 col-lg-6 d-none d-lg-block text-right">
-                    <div class="footer-menu">
-                        <ul>
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">Terms</a></li>
-                            <li><a href="#">Privacy</a></li>
-                            <li><a href="#">Policy</a></li>
-                            <li><a href="#">Contact</a></li>
-                        </ul>
+            </div>
+            <div class="footer-content pt-5 pb-5">
+                <div class="row">
+                    <div class="col-xl-4 col-lg-4 mb-50">
+                        <div class="footer-widget">
+                            <div class="footer-logo">
+                                <a href="{{url_for('home')}}"><img src="/static/svg/logo.png" class="img-fluid"
+                                        alt="logo"></a>
+                            </div>
+                            <div class="footer-text">
+    
+                            </div>
+                            <div class="footer-social-icon">
+                                <span>Follow us</span>
+                                <a href="#"><i class="fab fa-facebook-f facebook-bg"></i></a>
+                                <a href="#"><i class="fab fa-twitter twitter-bg"></i></a>
+                                <a href="#"><i class="fab fa-google-plus-g google-bg"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-6 mb-30">
+                        <div class="footer-widget">
+                            <div class="footer-widget-heading">
+                                <h3>Useful Links</h3>
+                            </div>
+                            <ul>
+                                <li><a href="#">Home</a></li>
+                                <li><a href="#">about</a></li>
+                                <li><a href="#">Contact</a></li>
+                                <li><a href="#">About us</a></li>
+                                <li><a href="#">Our Services</a></li>
+                                <li><a href="#">Contact us</a></li>
+    
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-6 mb-50">
+                        <div class="footer-widget">
+                            <div class="footer-widget-heading">
+                                <h3>Subscribe</h3>
+                            </div>
+                            <div class="footer-text mb-25">
+                                <p>Don’t miss to subscribe to our new feeds, kindly fill the form below.</p>
+                            </div>
+                            <div class="subscribe-form">
+                                <form action="#">
+                                    <input type="text" placeholder="Email Address">
+                                    <button><i class="fab fa-telegram-plane"></i></button>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</footer>
-
-
-
-
-
-
-<script src="https://kit.fontawesome.com/2fac5a2d70.js" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
-    crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
-    integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
-    crossorigin="anonymous"></script>
-
-<script src="/static/js/index.js"></script>
+        <div class="copyright-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 text-center text-lg-left">
+                        <div class="copyright-text">
+                            <p>Copyright &copy; 2023, All Right Reserved <a href="#">GyaanConnect</a></p>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-6 d-none d-lg-block text-right">
+                        <div class="footer-menu">
+                            <ul>
+                                <li><a href="#">Home</a></li>
+                                <li><a href="#">Terms</a></li>
+                                <li><a href="#">Privacy</a></li>
+                                <li><a href="#">Policy</a></li>
+                                <li><a href="#">Connect</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    
+    
+    
+    
+    <script src="https://kit.fontawesome.com/2fac5a2d70.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
+        integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
+        crossorigin="anonymous"></script>
+    
+    <script src="/static/js/index.js"></script>
+    
 </body>
-
+    
 </html>

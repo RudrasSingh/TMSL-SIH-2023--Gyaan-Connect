@@ -2,12 +2,12 @@ from flask import *
 from pyrebase import *
 from algorithm import Algorithm
 import database as db
-import requests
+# import requests
 import time 
 from datetime import timedelta
 from flask_socketio import SocketIO, emit
 from threading import Thread, Event
-import os
+# import os
 from googleapiclient.discovery import build
 from flask_socketio import join_room, leave_room, send, SocketIO
 import random

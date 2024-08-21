@@ -1,0 +1,151 @@
+/* Global Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f0f2f5;
+    margin: 0;
+    padding: 0;
+    color: #333;
+  }
+  
+  /* Container for the search bar */
+  .soike-search-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 40px auto;
+    width: 100%;
+    max-width: 900px;
+    padding: 0 20px;
+  }
+  
+  /* Search input field */
+  .soike-search-input {
+    flex: 1;
+    padding: 14px 24px;
+    border: 2px solid #ddd;
+    border-radius: 30px 0 0 30px;
+    font-size: 18px;
+    outline: none;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+    background-color: #fff;
+  }
+  
+  .soike-search-input:focus {
+    border-color: rgba(255, 102, 0, 1);
+    box-shadow: 0 8px 15px rgba(255, 102, 0, 0.25);
+  }
+  
+  /* Search button */
+  .soike-search-button {
+    padding: 14px 24px;
+    background: linear-gradient(135deg, rgba(255, 102, 0, 1), rgba(255, 153, 0, 1));
+    color: #fff;
+    border: none;
+    border-radius: 0 30px 30px 0;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 600;
+    transition: background 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+  }
+  
+  .soike-search-button:hover {
+    background: linear-gradient(135deg, rgba(255, 87, 34, 1), rgba(255, 160, 0, 1));
+    transform: translateY(-3px);
+  }
+  
+  .soike-search-button:active {
+    transform: translateY(1px);
+  }
+  
+  /* Video Grid Container */
+  .soike-video-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  /* Video Card */
+  .soike-video-card {
+    background: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: calc(50% - 30px); /* Adjust width to be half of the container minus gap */
+    max-width: 700px; /* Set max width for the card */
+    box-sizing: border-box;
+  }
+  
+  .soike-video-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Video Iframe Wrapper */
+  .soike-video-iframe-wrapper {
+    position: relative;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    overflow: hidden;
+  }
+  
+  .soike-video-iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+  
+  /* Video Card Description */
+  .soike-video-card-description {
+    padding: 20px;
+    background: #fff;
+    border-top: 1px solid #ddd;
+  }
+  
+  .soike-video-card-description p {
+    margin: 0;
+    font-size: 18px;
+  }
+  
+  .soike-in-line-text-button {
+    color: #ff6600;
+    text-decoration: none;
+    font-weight: bold;
+    margin-left: 10px;
+  }
+  
+  .soike-in-line-text-button:hover {
+    text-decoration: underline;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 600px) {
+    .soike-search-bar {
+      flex-direction: column;
+      padding: 0;
+    }
+  
+    .soike-search-input,
+    .soike-search-button {
+      border-radius: 30px;
+      margin: 10px 0;
+      width: 100%;
+    }
+  
+    .soike-video-grid {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .soike-video-card {
+      width: 100%;
+      max-width: 700px; /* Ensure card size stays consistent */
+    }
+  }
+  

@@ -78,7 +78,7 @@ def delete_gyx(email):
 
 #table-3 : user_login
 
-def create_login(email, name, password, ayatech):
+"""def create_login(email, name, password, ayatech):
     db = get_database()
     cursor = db.cursor()
     cursor.execute('''INSERT INTO login (email, name, password, ayatech) 
@@ -98,12 +98,12 @@ def update_login(email, name, password, ayatech):
     cursor.execute('''UPDATE login SET name=?, password=?, ayatech=? WHERE email=?''', 
                    (name, password, ayatech, email))
     db.commit()
-
+  
 def delete_login(email):
     db = get_database()
     cursor = db.cursor()
     cursor.execute('''DELETE FROM login WHERE email=?''', (email,))
-    db.commit()
+    db.commit()"""
 
 
 #table-4 : personal details

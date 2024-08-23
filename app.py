@@ -163,13 +163,13 @@ def signup():
         newemail = request.form['newemail']
         newpassword = request.form['newpassword']
         is_teacher = 'flag' in request.form
-
+        context = {"name":newname,"email":newemail}
         try: 
             user = auth.create_user_with_email_and_password(newemail, newpassword)
-            
+        
             if is_teacher==True :
-                db.create_login(newemail, newname, newpassword, 1)
-                return(render_template('teacher_login.html'))
+                db.
+                return(render_template('teacher_login.html',context = context))
             else:
                 return(render_template('personal_details.html'))
            

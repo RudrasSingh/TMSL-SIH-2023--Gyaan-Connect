@@ -116,10 +116,10 @@ def create_pers_det(email, first_name, last_name, college, gender, location, pho
                    (email, first_name, last_name, college, gender, location, phone, dob, course, topic, level, pf_pic))
     db.commit()
 
-def fetch_pers_det():
+def fetch_pers_det(email):
     db = get_database()
     cursor = db.cursor()
-    cursor.execute('''SELECT * FROM pers_det''')
+    cursor.execute('''SELECT * FROM pers_det where email=?''',(email))
     rows = cursor.fetchall()
     return rows
 

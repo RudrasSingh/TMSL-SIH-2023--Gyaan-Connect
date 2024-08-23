@@ -1,4 +1,4 @@
-from test import YTStats
+from youtube import YTStats
 from pytube import *
 import requests
 import json
@@ -71,9 +71,10 @@ def post_video_stats(playlist_url):
     return video_stats_list
     
     
-# ids = get_video_ids("https://youtube.com/playlist?list=PLU6SqdYcYsfJV8Lfq4KFA0U8kGeJ2NGWV&si=zq8VtON19aU-aL6g")
-# json_url = requests.get(yt.get_video_stats(ids[0][0]))
-# data = json.loads(json_url.text)
+ids = get_video_ids("https://youtube.com/playlist?list=PLU6SqdYcYsfJV8Lfq4KFA0U8kGeJ2NGWV&si=zq8VtON19aU-aL6g")
+json_url = requests.get(yt.get_video_stats(ids[0][0]))
+data = json.loads(json_url.text)
+print(json.dumps(data, indent=4))
 
 
 

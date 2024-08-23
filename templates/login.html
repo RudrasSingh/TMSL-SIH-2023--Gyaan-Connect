@@ -93,7 +93,7 @@
                 <h1 style="padding-top: 2rem;">Create Account</h1>
                 <div class="social-container">
 
-                    <a href="#" class="social"><i class="fab fa-google"></i></a>
+                    <a href="{{url_for('googleSignup')}}" class="social"><i class="fab fa-google"></i></a>
                 </div>
         
                 <span>or use your email for registration</span>
@@ -125,7 +125,7 @@
             <form method = "POST" action="{{url_for('login')}}">
                 <h1>Sign in</h1>
                 <div class="social-container">
-                    <a href="" class="social"><i class="fab fa-google"></i></a>
+                    <a href="{{url_for('googleLogin')}}" class="social"><i class="fab fa-google"></i></a>
                 </div>
                 <span>or use your account</span>
                 <input type="email" name="email" placeholder="Email" required/>
